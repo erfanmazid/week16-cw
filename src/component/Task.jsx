@@ -1,22 +1,21 @@
-export default function Task({ data, allData, onChangeData }) {
+export default function Task({ data, allData, onChangeData, onDelete }) {
   const { id, title, isDone } = data;
   function handelCheckClick() {
-    // allData.map((item) => {
-    //   let c = item.id === id && isDone == false;
-    //   console.log(c);
-    //   if (c === true) {
-    //     item.isDone = true;
-    //     console.log(item);
-    //   } else if (c === false) {
-    //     item.isDone = false;
-    //     console.log(item);
-    //   }
-    // });
-    // onChangeData(allData);
+    allData.map((item) => {
+      let c = item.id === id && isDone == false;
+      console.log(c);
+      if (c === true) {
+        item.isDone = true;
+        console.log(item);
+      } else if (c === false) {
+        item.isDone = false;
+        console.log(item);
+      }
+    });
+    onChangeData(allData);
   }
   function handelDeleteClick() {
-    allData = allData.filter((item) => item.id !== data.id);
-    console.log(allData);
+    onDelete(id);
   }
   const style = "text-decoration: line-through;";
   return (

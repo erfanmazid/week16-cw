@@ -5,6 +5,11 @@ import RenderTasks from "./RenderTasks";
 export default function AllTasts() {
   let [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("");
+
+  function handelDelete(id) {
+    setTasks(tasks.filter((item) => item.id !== id));
+  }
+
   if (filter === "done") {
     tasks = tasks.filter((item) => item.isDone === true);
   } else if (filter === "undone") {
@@ -17,7 +22,7 @@ export default function AllTasts() {
         onAddTask={(item) => setTasks(item)}
         onChangeFilter={(i) => setFilter(i)}
       />
-      <RenderTasks data={tasks} />
+      <RenderTasks data={tasks} onDelete={handelDelete} />
     </div>
   );
 }
